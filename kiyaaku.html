@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KiyaAku — Foto & Video</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070b14;color:#f7f8fc;font-family:Inter,system-ui,Arial,sans-serif}button,input{font:inherit}
+header{height:70px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;background:#090e19ee;position:sticky;top:0;z-index:5}.logo{font-size:22px;font-weight:900;letter-spacing:-1px}.logo span{color:#a878ff}.profile{display:flex;gap:9px;align-items:center}.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#9d6cff,#4c8dff)}
+main{max-width:1120px;margin:auto;padding:28px 18px}.hero{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:24px}.hero h1{font-size:clamp(30px,5vw,50px);margin:0 0 8px;letter-spacing:-2px}.hero p{margin:0;color:#98a3b8}.upload{border:0;border-radius:13px;padding:13px 20px;background:linear-gradient(135deg,#a86cff,#6654ff);color:white;font-weight:900;cursor:pointer;box-shadow:0 8px 25px #735cff44}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}.stat{padding:17px;background:#0d1422;border:1px solid #ffffff12;border-radius:15px}.stat b{display:block;font-size:22px}.stat span{color:#8995aa;font-size:12px}
+.toolbar{display:flex;gap:9px;align-items:center;margin-bottom:15px}.tab{border:1px solid #ffffff15;background:#0d1422;color:#b8c1d0;border-radius:9px;padding:9px 14px;cursor:pointer}.tab.active{background:#9b6cff;color:white;border-color:#9b6cff}.search{margin-left:auto;background:#0d1422;border:1px solid #ffffff15;color:white;border-radius:9px;padding:9px 12px;width:190px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.item{position:relative;aspect-ratio:1/1;background:#111827;border-radius:13px;overflow:hidden;border:1px solid #ffffff10}.item img,.item video{width:100%;height:100%;object-fit:cover}.badge{position:absolute;left:9px;top:9px;background:#000a;padding:5px 8px;border-radius:7px;font-size:11px}.name{position:absolute;bottom:0;left:0;right:0;padding:30px 10px 9px;background:linear-gradient(transparent,#000b);font-size:12px}
+.empty{display:none;text-align:center;padding:50px;color:#8995aa;background:#0d1422;border-radius:15px}
+.modal{position:fixed;inset:0;background:#000c;display:none;place-items:center;z-index:10;padding:18px}.modal.show{display:grid}.box{width:min(520px,100%);background:#0e1524;border:1px solid #ffffff1c;border-radius:18px;padding:22px}.box h2{margin:0 0 8px}.box p{color:#94a0b4}.drop{border:2px dashed #725eff88;border-radius:15px;padding:38px 20px;text-align:center;background:#725eff08}.drop input{margin-top:15px;max-width:100%}.preview{display:grid;gap:8px;margin-top:12px}.progress{height:8px;background:#202a3c;border-radius:9px;overflow:hidden}.bar{height:100%;width:0;background:#9b6cff;transition:width .2s}.close{float:right;background:none;border:0;color:white;font-size:22px;cursor:pointer}
+@media(max-width:800px){.gallery{grid-template-columns:repeat(3,1fr)}.hero{align-items:start;flex-direction:column}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{display:none}}
+@media(max-width:500px){.gallery{grid-template-columns:repeat(2,1fr)}.search{width:120px}.toolbar{overflow:auto}}
+</style>
+</head>
+<body>
+<header><div class="logo">Kiya<span>Aku</span></div><div class="profile"><span>My Gallery</span><div class="avatar">K</div></div></header>
+<main>
+<section class="hero"><div><h1>Semua kenangan,<br>di satu tempat.</h1><p>Simpan foto dan video dalam kualitas tinggi di KiyaAku.</p></div><button class="upload" id="open">＋ Upload Foto / Video</button></section>
+<section class="stats"><div class="stat"><b id="count">4</b><span>FILE TERSIMPAN</span></div><div class="stat"><b>18.6 GB</b><span>PENYIMPANAN TERPAKAI</span></div><div class="stat"><b>Asli</b><span>KUALITAS FILE</span></div></section>
+<div class="toolbar"><button class="tab active" data-type="all">Semua</button><button class="tab" data-type="image">Foto</button><button class="tab" data-type="video">Video</button><input class="search" id="search" placeholder="Cari file..."></div>
+<div id="gallery" class="gallery">
+<div class="item" data-type="image" data-name="Kenangan 01"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=90"><div class="badge">JPG · 12 MP</div><div class="name">Kenangan 01</div></div>
+<div class="item" data-type="image" data-name="Kenangan 02"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=90"><div class="badge">HEIC · 4K</div><div class="name">Kenangan 02</div></div>
+<div class="item" data-type="video" data-name="Video 01"><video muted autoplay loop playsinline src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video><div class="badge">VIDEO · 4K</div><div class="name">Video 01</div></div>
+<div class="item" data-type="image" data-name="Kenangan 03"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=90"><div class="badge">JPG · 12 MP</div><div class="name">Kenangan 03</div></div>
+</div><div class="empty" id="empty">Tidak ada file yang cocok.</div>
+</main>
+<div class="modal" id="modal"><div class="box"><button class="close" id="close">×</button><h2>Upload ke KiyaAku</h2><p>Pilih foto atau video. Prototype ini menampilkan proses upload di perangkat; penyimpanan cloud nyata dapat ditambahkan pada tahap backend.</p><div class="drop"><b>📤 Pilih file resolusi tinggi</b><br><input id="files" type="file" accept="image/*,video/*" multiple></div><div class="preview" id="preview"></div></div></div>
+<script>
+const modal=document.getElementById('modal'),gallery=document.getElementById('gallery'),empty=document.getElementById('empty');
+document.getElementById('open').onclick=()=>modal.classList.add('show');document.getElementById('close').onclick=()=>modal.classList.remove('show');
+document.getElementById('files').onchange=e=>{
+ for(const f of e.target.files){
+  const url=URL.createObjectURL(f),type=f.type.startsWith('video')?'video':'image',item=document.createElement('div');item.className='item';item.dataset.type=type;item.dataset.name=f.name.toLowerCase();
+  item.innerHTML=(type==='video'?`<video muted autoplay loop playsinline src="${url}"></video>`:`<img src="${url}">`)+`<div class="badge">${type==='video'?'VIDEO':'FOTO'} · ${Math.round(f.size/1024/1024*10)/10} MB</div><div class="name">${f.name}</div>`;
+  gallery.prepend(item);
+  const p=document.createElement('div');p.innerHTML=`<small>${f.name}</small><div class="progress"><div class="bar"></div></div>`;document.getElementById('preview').appendChild(p);let bar=p.querySelector('.bar');let n=0;let t=setInterval(()=>{n+=8;bar.style.width=Math.min(n,100)+'%';if(n>=100)clearInterval(t)},70);
+ }
+ document.getElementById('count').textContent=gallery.children.length;
+};
+let active='all';function filter(){let q=document.getElementById('search').value.toLowerCase(),shown=0;[...gallery.children].forEach(x=>{let ok=(active==='all'||x.dataset.type===active)&&x.dataset.name.includes(q);x.style.display=ok?'block':'none';if(ok)shown++});empty.style.display=shown?'none':'block'}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.type;filter()});document.getElementById('search').oninput=filter;
+</script>
+</body>
+</html>
